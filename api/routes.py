@@ -51,6 +51,9 @@ async def initialize_routes(app):
     @app.get("/login")
     async def handle(request):
         user = await User.find_one({"username": request.args.get("username")})
+        if not user:
+            response = sanic.response.json({"ok": False, "description": "No such user exists"})
+            return response
         user_pass = hash(str(user.password))
         request_pass = hash(str(request.args.get("password")))
         if str(user_pass) == str(request_pass):
