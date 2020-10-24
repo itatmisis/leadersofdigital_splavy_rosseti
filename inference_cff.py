@@ -24,9 +24,9 @@ def time_2_faza(faza_2):
     A = 0.5
     short_type = '2_faza'
     for index, row in faza_2.iterrows():
-        a = (row['Ia'] > A ) | (row['Ia'] < -A)
-        b = (row['Ib'] > A ) | (row['Ib'] < -A)
-        c = (row['Ic'] > A ) | (row['Ic'] < -A)
+        a = abs(row['Ia']) > A
+        b = abs(row['Ib']) > A
+        c = abs(row['Ic']) > A
         if ((a and b and not c) or (a and c and not b) or (b and c and not a)):
             if st_bool:
                 start = row['t']
@@ -42,9 +42,9 @@ def time_3_faza(faza_3):
     A = 0.5
     short_type = '3_faza'
     for index, row in faza_3.iterrows():
-        a = ((row['Ia'] > A ) or (row['Ia'] < -A))
-        b = ((row['Ib'] > A ) or (row['Ib'] < -A))
-        c = ((row['Ic'] > A ) or (row['Ic'] < -A))
+        a = abs(row['Ia']) > A
+        b = abs(row['Ib']) > A
+        c = abs(row['Ic']) > A
         if a and b and c:
             if st_bool:
                 start = row['t']
