@@ -8,7 +8,6 @@ def time_1_faza(faza_1):
     end = 0
     A = 0.5
     short_type = '1_faza'
-    #print(faza_1)
     for index, row in faza_1.iterrows():
         if -20 < row['Ub'] < 20 and abs(row['Ib']) > 1 or -20 < row['Ua'] < 20 and abs(row['Ia']) > 1 or -20 < row['Uc'] < 20 and abs(row['Ic']) > 1:
             if st_bool:
@@ -24,7 +23,6 @@ def time_2_faza(faza_2):
     end = 0
     A = 0.5
     short_type = '2_faza'
-    #print(faza_2)
     for index, row in faza_2.iterrows():
         a = (row['Ia'] > A ) | (row['Ia'] < -A)
         b = (row['Ib'] > A ) | (row['Ib'] < -A)
@@ -43,9 +41,6 @@ def time_3_faza(faza_3):
     end = 0
     A = 0.5
     short_type = '3_faza'
-    a = False
-    b = False
-    c = False
     for index, row in faza_3.iterrows():
         a = ((row['Ia'] > A ) or (row['Ia'] < -A))
         b = ((row['Ib'] > A ) or (row['Ib'] < -A))
@@ -81,10 +76,3 @@ def detect(path_to_сff, k_stat=1):
         results.append(res)
     return results
 ###
-
-#detect('/content/1_faza_perv.cff', 2)
-
-#detect('/content/2_faza_VL.cff', 1)
-
-#detect('/content/3_faza_VL.cff', 2)
-
