@@ -9,7 +9,7 @@ def time_1_faza(faza_1):
     A = 0.5
     short_type = '1_faza'
     for index, row in faza_1.iterrows():
-        if -20 < row['Ub'] < 20 and abs(row['Ib']) > 1 or -20 < row['Ua'] < 20 and abs(row['Ia']) > 1 or -20 < row['Uc'] < 20 and abs(row['Ic']) > 1:
+        if abs(row['Ub']) < 20 and abs(row['Ib']) > 1 or abs(row['Ua']) < 20 and abs(row['Ia']) > 1 or abs(row['Uc']) < 20 and abs(row['Ic']) > 1:
             if st_bool:
                 start = row['t']
                 st_bool = False
