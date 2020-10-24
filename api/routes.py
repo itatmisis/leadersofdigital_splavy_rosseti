@@ -13,17 +13,15 @@ from database.entities import User, Complex
 
 
 async def check_request_for_authorization_status(request):
-    cookie = str(request.cookies.get("logged"))
-    user = await User.find_one({"username": request.args.get("username")})
-    if not user:
+    cookie = request.cookies.get("logged")
+    user = await User.find_one({"salt": cookie})
+    if user:
+        return True
+    else:
         return False
 
-    flag = (cookie == user.salt)
-
-    return flag
-
 async def check_request_for_usertype(request):
-    user = await User.find_one({"username": request.args.get("username")})
+    user = await User.find_one({"salt": request.cookies.get("logged")})
     if not user:
         return False
 
@@ -39,7 +37,7 @@ def authorized_type(f):
         if usertype:
             # the user exists.
             # run the handler method and return the response
-            request.args["usertype"] = usertype
+            request.args["usertype"] = [usertype]
             response = await f(request, *args, **kwargs)
             return response
         else:
@@ -150,18 +148,18 @@ async def initialize_routes(app):
     @authorized
     @authorized_type
     async def handle(request):
-        if request.args.get("usertype") != "supervisor":
-            return sanic.response.json({"ok": False, "description": "You are not a supervisor!"})
-        else:
+        if request.args.get("usertype") == "supervisor":
             return sanic.response.json({"ok": True, "description": "You are supervisor!"})
+        else:
+            return sanic.response.json({"ok": False, "description": "You are not a supervisor!"})
 
     @app.route("/worker")
     @authorized
     @authorized_type
     async def handle(request):
-        if request.args.get("usertype") != "worker":
-            return sanic.response.json({"ok": False, "description": "You are not a worker!"})
-        else:
+        if request.args.get("usertype") == "worker":
             return sanic.response.json({"ok": True, "description": "You are worker!"})
+        else:
+            return sanic.response.json({"ok": False, "description": "You are not a worker!"})
 
 
