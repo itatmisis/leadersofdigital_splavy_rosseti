@@ -78,8 +78,27 @@ async def initialize_routes(app):
         else:
             return sanic.response.json({"ok": False, "description": "This username already exists"})
 
-    @app.websocket("/complex/get")
+    @app.get("/complex/get")
+    async def handle(request):
+        try:
+            cursor: WrappedCursor = Complex.find({})
+            complexes = []
+            obj = True
+            while obj:
+                try:
+                    obj: Complex = await cursor.next()
+                    if obj:
+                        complexes.append(dumps(obj))
+                except:
+                    obj = False
+            response = sanic.response.json({"ok": True, "data": complexes})
+            return response
+        except:
+            return sanic.response.json({"ok": False, "data": []})
+
+    @app.websocket("/complex/fetch")
     async def feed(request, ws):
+        await ws.recv()
         while True:
             try:
                 cursor: WrappedCursor = Complex.find({})
