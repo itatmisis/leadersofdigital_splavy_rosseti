@@ -1,0 +1,86 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.3fr 6fr;
+}
+
+.title {
+    padding: 10px;
+    font-family: 'Bahnschrift', sans-serif;
+    display: block;
+    align-self: center;
+    margin-left: 13px;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.logs {
+    display: grid;
+    grid-template-rows: 1fr 6.5fr;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.logs_header {
+    display: grid;
+    grid-template-rows: 1.5fr 1fr;
+}
+
+#map {
+    height: 100%;
+}
+
+
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+#myInput {
+
+    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    font-size: 14px; /* Increase font-size */
+    padding: 12px 20px 12px 25px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+#myUL {
+    /* Remove default list styling */
+    list-style-type: none;
+
+    padding: 0;
+    margin: 0;
+}
+
+
+
+#myUL li a {
+    font-family: 'Bahnschrift', sans-serif;
+    box-sizing: content-box;
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+    background-color: white; /* Grey background color */
+    padding: 12px; /* Add some padding */
+    padding-left: 20px;
+    text-decoration: none; /* Remove default text underline */
+    font-size: 18px; /* Increase the font-size */
+    color: black; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+}
+
+#myUL li a:hover:not(.header) {
+    transition: 0.6s;
+    background-color: #f6f6f6; /* Add a hover effect to all links, except for headers */
+}
