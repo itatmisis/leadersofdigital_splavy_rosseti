@@ -1,10 +1,12 @@
 from functools import wraps
 
 import sanic.response
+from bson.json_util import dumps
 from sanic import Blueprint
 from sanic_openapi import swagger_blueprint
+from umongo.frameworks.motor_asyncio import WrappedCursor
 
-from database.entities import User
+from database.entities import User, Complex
 
 
 async def check_request_for_authorization_status(request):
@@ -74,3 +76,22 @@ async def initialize_routes(app):
             return response
         else:
             return sanic.response.json({"ok": False, "description": "This username already exists"})
+
+    @app.get("/complex/get")
+    async def handle(request):
+        try:
+            cursor: WrappedCursor = Complex.find({})
+            complexes = []
+            obj = True
+            while obj:
+                try:
+                    obj: Complex = await cursor.next()
+                    if obj:
+                        complexes.append(dumps(obj))
+                except:
+                    obj = False
+            print(complexes)
+            response = sanic.response.json({"ok": True, "data": complexes})
+            return response
+        except:
+            return sanic.response.json({"ok": False, "data": []})

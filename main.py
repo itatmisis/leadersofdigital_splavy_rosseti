@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
+from asyncio import get_event_loop
+
 from api import routes
 from database import database
 from server import app
-from asyncio import get_event_loop
 
 
 async def setup():

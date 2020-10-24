@@ -6,3 +6,4 @@ sanic-openapi
 umongo[motor]~=2.3.0
 motor~=2.3.0
 dnspython
+pandas

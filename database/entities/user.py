@@ -10,3 +10,4 @@ instance: MotorAsyncIOInstance = app.config["LAZY_UMONGO"]
 class User(Document):
     username = StringField(required=True, allow_none=False, unique=True)
     password = StringField(required=True, allow_none=False)
+    usertype = StringField(required=True, allow_none=False, default="worker")
