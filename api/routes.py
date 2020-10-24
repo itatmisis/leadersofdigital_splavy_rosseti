@@ -1,8 +1,10 @@
 import asyncio
 from functools import wraps
+import random
 
 import sanic.response
 from bson.json_util import dumps
+import json
 from sanic import Blueprint
 from sanic_openapi import swagger_blueprint
 from umongo.frameworks.motor_asyncio import WrappedCursor
@@ -16,10 +18,35 @@ async def check_request_for_authorization_status(request):
     if not user:
         return False
 
-    hashed_pass = str(hash(user.password))
-    flag = (cookie == hashed_pass)
+    flag = (cookie == user.salt)
 
     return flag
+
+async def check_request_for_usertype(request):
+    user = await User.find_one({"username": request.args.get("username")})
+    if not user:
+        return False
+
+    return user.usertype
+
+def authorized_type(f):
+    @wraps(f)
+    async def decorated_function(request, *args, **kwargs):
+        # run some method that checks the request
+        # for the client's type
+        usertype = await check_request_for_usertype(request)
+
+        if usertype:
+            # the user exists.
+            # run the handler method and return the response
+            request.args["usertype"] = usertype
+            response = await f(request, *args, **kwargs)
+            return response
+        else:
+            # the user does not exist.
+            return sanic.response.json({'ok': False, "description": "No such user exist"}, 403)
+
+    return decorated_function
 
 
 def authorized(f):
@@ -61,7 +88,7 @@ async def initialize_routes(app):
         request_pass = hash(str(request.args.get("password")))
         if str(user_pass) == str(request_pass):
             response = sanic.response.json({"ok": True})
-            response.cookies["logged"] = str(hash(str(request.args["password"])))
+            response.cookies["logged"] = user.salt
         else:
             response = sanic.response.json({"ok": False})
         return response
@@ -70,10 +97,11 @@ async def initialize_routes(app):
     async def handle(request):
         does_user_exist = await User.find_one({"username": request.json["username"]})
         if not does_user_exist:
-            user = User(username=request.json["username"], password=request.json["password"])
+            user_salt = str(random.getrandbits(128))
+            user = User(username=request.json["username"], password=request.json["password"], salt=user_salt)
             await user.commit()
             response = sanic.response.json({"ok": True})
-            response.cookies["logged"] = str(hash(request.json["password"]))
+            response.cookies["logged"] = user_salt
             return response
         else:
             return sanic.response.json({"ok": False, "description": "This username already exists"})
@@ -88,13 +116,14 @@ async def initialize_routes(app):
                 try:
                     obj: Complex = await cursor.next()
                     if obj:
-                        complexes.append(dumps(obj))
+                        complexes.append(obj)
                 except:
                     obj = False
+            complexes = dumps(complexes)
             response = sanic.response.json({"ok": True, "data": complexes})
             return response
         except:
-            return sanic.response.json({"ok": False, "data": []})
+            return sanic.response.json({"ok": False, "data": dumps([])})
 
     @app.websocket("/complex/fetch")
     async def feed(request, ws):
@@ -116,3 +145,23 @@ async def initialize_routes(app):
             except:
                 await ws.send(sanic.response.json({"ok": False, "data": []}))
             await asyncio.sleep(20)
+
+    @app.route("/supervisor")
+    @authorized
+    @authorized_type
+    async def handle(request):
+        if request.args.get("usertype") != "supervisor":
+            return sanic.response.json({"ok": False, "description": "You are not a supervisor!"})
+        else:
+            return sanic.response.json({"ok": True, "description": "You are supervisor!"})
+
+    @app.route("/worker")
+    @authorized
+    @authorized_type
+    async def handle(request):
+        if request.args.get("usertype") != "worker":
+            return sanic.response.json({"ok": False, "description": "You are not a worker!"})
+        else:
+            return sanic.response.json({"ok": True, "description": "You are worker!"})
+
+
