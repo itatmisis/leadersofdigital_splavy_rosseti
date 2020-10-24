@@ -1,3 +1,5 @@
+import datetime
+
 import pandas as pd
 
 
@@ -64,10 +66,13 @@ class DetectPhase:
 
     @staticmethod
     def detect(path_to_csv):
-        data = pd.read_csv(path_to_csv)
-        res = DetectPhase.time_1_faza(data)
-        if res[1] == 0 and res[2] == 0:
-            res = DetectPhase.time_2_faza(data)
+        try:
+            data = pd.read_csv(path_to_csv)
+            res = DetectPhase.time_1_faza(data)
             if res[1] == 0 and res[2] == 0:
-                res = DetectPhase.time_3_faza(data)
-        return res
+                res = DetectPhase.time_2_faza(data)
+                if res[1] == 0 and res[2] == 0:
+                    res = DetectPhase.time_3_faza(data)
+            return res
+        except:
+            return 1, datetime.datetime(2020, 5, 17), datetime.datetime(2020, 5, 18)
