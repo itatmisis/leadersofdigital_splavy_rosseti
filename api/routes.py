@@ -169,7 +169,7 @@ async def initialize_routes(app):
     @authorized
     @authorized_type
     async def handle(request):
-        if request.args.get("usertype") == "supervisor":
+        if request.args.get("usertype") == "worker":
             try:
                 req = request.json
                 comp: Complex = await Complex.find_one({"title": req["complex_title"]})
@@ -197,7 +197,7 @@ async def initialize_routes(app):
     @authorized
     @authorized_type
     async def handle(request):
-        if request.args.get("usertype") == "supervisor":
+        if request.args.get("usertype") == "worker":
             try:
                 req = request.json
                 event: Event = await Event.find_one({"title": req["event_title"]})
