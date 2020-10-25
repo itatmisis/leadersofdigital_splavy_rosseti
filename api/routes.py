@@ -169,6 +169,7 @@ async def initialize_routes(app):
     async def handle(request):
         try:
             req = request.json
+            print(req)
             comp: Complex = await Complex.find_one({"title": req["complex_title"]})
             file = req["event_file"]
             event_type, event_start, event_end = DetectPhase.detect(file)[0]
