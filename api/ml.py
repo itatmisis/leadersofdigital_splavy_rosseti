@@ -1,7 +1,4 @@
-import pandas as pd
 from comtrade import Comtrade
-
-
 class DetectPhase:
 
     @staticmethod
@@ -23,7 +20,7 @@ class DetectPhase:
                     start = row['t']
                     st_bool = False
                 end = row['t']
-        return (short_type, start, end)
+        return [short_type, start, end]
 
     @staticmethod
     def time_2_faza(faza_2):
@@ -41,7 +38,7 @@ class DetectPhase:
                     start = row['t']
                     st_bool = False
                 end = row['t']
-        return (short_type, start, end)
+        return [short_type, start, end]
 
     @staticmethod
     def time_3_faza(faza_3):
@@ -59,7 +56,7 @@ class DetectPhase:
                     start = row['t']
                     st_bool = False
                 end = row['t']
-        return (short_type, start, end)
+        return [short_type, start, end]
 
     @staticmethod
     def detect(path_to_cff, k_stat=1):
@@ -78,9 +75,22 @@ class DetectPhase:
         for i in range(k_stat):
             phase = pd.concat([data.iloc[:, 0], data.iloc[:, 1 + i * 8: 9 + i * 8]], axis=1, sort=False)
             res = DetectPhase.time_1_faza(phase)
+            if res[1] != 0 and res[2] != 0 :
+              if rec.digital[79] != 0:
+                res.append(0)
+              else:
+                res.append(1)
             if res[1] == 0  and res[2] == 0:
                 res = DetectPhase.time_3_faza(phase)
+                if rec.digital[3] != 0:
+                  res.append(0)
+                else:
+                  res.append(1)
                 if res[1] == 0  and res[2] == 0:
                     res = DetectPhase.time_2_faza(phase)
+                    if rec.digital[3] != 0:
+                      res.append(0)
+                    else:
+                      res.append(1)
             results.append(res)
         return results
