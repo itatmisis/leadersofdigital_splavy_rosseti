@@ -165,7 +165,7 @@ async def initialize_routes(app):
         else:
             return sanic.response.json({"ok": False, "description": "You are not a worker!"})
 
-    @app.post("/supervisor/register-event")
+    @app.post("/worker/register-event")
     @authorized
     @authorized_type
     async def handle(request):
@@ -175,13 +175,15 @@ async def initialize_routes(app):
                 comp: Complex = await Complex.find_one({"title": req["complex_title"]})
                 file = req["event_file"]
                 event_type, event_start, event_end = DetectPhase.detect(file)
-                event_start = datetime.datetime(microsecond=event_start)
-                event_end = datetime.datetime(microsecond=event_end)
+                event_start = datetime.datetime(2020, 10, 25, 9, 10, microsecond=event_start)
+                event_end = datetime.datetime(2020, 10, 25, 9, 10,  microsecond=event_end)
+                event_length = event_end - event_start
                 event = Event(title=req["event_title"],
                               description=req["event_description"],
                               event_type=event_type,
-                              event_start=event_start,
-                              event_end=event_end,
+                              event_start=event_start.__str__(),
+                              event_end=event_end.__str__(),
+                              event_length=event_length.microseconds,
                               probability=0.87)
                 comp.events.append(event)
                 await comp.commit()
@@ -189,9 +191,9 @@ async def initialize_routes(app):
             except:
                 return sanic.response.json({"ok": False})
         else:
-            return sanic.response.json({"ok": False, "description": "You are not a supervisor!"})
+            return sanic.response.json({"ok": False, "description": "You are not a worker!"})
 
-    @app.post("/supervisor/add-marker")
+    @app.post("/worker/add-marker")
     @authorized
     @authorized_type
     async def handle(request):
@@ -208,4 +210,4 @@ async def initialize_routes(app):
             except:
                 return sanic.response.json({"ok": False})
         else:
-            return sanic.response.json({"ok": False, "description": "You are not a supervisor!"})
+            return sanic.response.json({"ok": False, "description": "You are not a worker!"})
