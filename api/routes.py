@@ -167,29 +167,29 @@ async def initialize_routes(app):
 
     @app.post("/worker/register-event")
     async def handle(request):
-        try:
-            req = request.json
-            print(req)
-            comp: Complex = await Complex.find_one({"title": req["complex_title"]})
-            file = req["event_file"]
-            event_type, event_start, event_end = DetectPhase.detect(file)[0]
-            event_start = int(event_start*1000000)
-            event_end = int(event_end*1000000)
-            event_start = datetime.datetime(2020, 10, 25, 9, 10, 15, event_start)
-            event_end = datetime.datetime(2020, 10, 25, 9, 10, 15, event_end)
-            event_length = event_end - event_start
-            event = Event(title=req["event_title"],
-                          description=req["event_description"],
-                          event_type=event_type,
-                          event_start=event_start.__str__(),
-                          event_end=event_end.__str__(),
-                          event_length=event_length.microseconds,
-                          probability=0.87)
-            comp.events.append(event)
-            await comp.commit()
-            return sanic.response.json({"ok": True})
-        except:
-            return sanic.response.json({"ok": False})
+        # try:
+        req = request.json
+        print(req)
+        comp: Complex = await Complex.find_one({"title": req["complex_title"]})
+        file = req["event_file"]
+        event_type, event_start, event_end = DetectPhase.detect(file)[0]
+        event_start = int(event_start*1000000)
+        event_end = int(event_end*1000000)
+        event_start = datetime.datetime(2020, 10, 25, 9, 10, 15, event_start)
+        event_end = datetime.datetime(2020, 10, 25, 9, 10, 15, event_end)
+        event_length = event_end - event_start
+        event = Event(title=req["event_title"],
+                      description=req["event_description"],
+                      event_type=event_type,
+                      event_start=event_start.__str__(),
+                      event_end=event_end.__str__(),
+                      event_length=event_length.microseconds,
+                      probability=0.87)
+        comp.events.append(event)
+        await comp.commit()
+        return sanic.response.json({"ok": True})
+        # except:
+        #     return sanic.response.json({"ok": False})
 
     @app.post("/worker/add-marker")
     async def handle(request):
