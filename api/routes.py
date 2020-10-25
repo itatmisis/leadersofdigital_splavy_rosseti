@@ -171,7 +171,9 @@ async def initialize_routes(app):
             req = request.json
             comp: Complex = await Complex.find_one({"title": req["complex_title"]})
             file = req["event_file"]
-            event_type, event_start, event_end = DetectPhase.detect(file)[0]
+            results = DetectPhase.detect(file)
+            event_type, event_start, event_end, probability = results[0]
+            event_type = {"1_faza": "Однофазное КЗ", "2_faza": "Двухфазное КЗ", "3_faza": "Трёхфазное КЗ"}[event_type]
             event_start = int(event_start*1000000)
             event_end = int(event_end*1000000)
             event_start = datetime.datetime(2020, 10, 25, 9, 10, 15, event_start)
@@ -183,7 +185,7 @@ async def initialize_routes(app):
                           event_start=event_start.__str__(),
                           event_end=event_end.__str__(),
                           event_length=event_length.microseconds,
-                          probability=0.87)
+                          probability=probability)
             comp.events.append(event)
             await comp.commit()
             return sanic.response.json({"ok": True})
