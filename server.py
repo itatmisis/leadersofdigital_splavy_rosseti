@@ -1,7 +1,10 @@
 from sanic import Sanic
+from sanic_cors import CORS
+
 from umongo import MotorAsyncIOInstance
 
 app = Sanic(__name__)
+CORS(app)
 
 app.config.update({
     "MONGODB_DATABASE": "rosseti",

@@ -14,4 +14,4 @@ async def setup():
 if __name__ == '__main__':
     loop = get_event_loop()
     loop.run_until_complete(setup())
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='95.217.8.18', port=8000)

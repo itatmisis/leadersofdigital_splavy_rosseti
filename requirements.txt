@@ -2,6 +2,8 @@ sanic~=20.9.0
 sanic-mongodb-extension
 sanic-jinja2
 sanic-openapi
+sanic-cors
+sanic-plugin-toolkit>=1.0.0,<2
 
 umongo[motor]~=2.3.0
 motor~=2.3.0
