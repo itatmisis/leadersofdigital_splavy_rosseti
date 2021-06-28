@@ -628,3 +628,13 @@ INFO:sanic.access:
 INFO:sanic.access:
 [2021-06-28 16:40:20 +0200] - (sanic.access)[INFO][116.203.245.151:46456]: GET http://95.217.8.18:8000/complex/get  200 1203
 INFO:sanic.access:
+[2021-06-28 16:53:03 +0200] - (sanic.access)[INFO][158.255.150.252:46048]: GET http://95.217.8.18:8000/login?username=admin&password=admin  200 45
+INFO:sanic.access:
+[2021-06-28 16:53:07 +0200] - (sanic.access)[INFO][158.255.150.252:46048]: GET http://95.217.8.18:8000/login?username=admin&password=pass  200 35
+INFO:sanic.access:
+[2021-06-28 16:53:07 +0200] - (sanic.access)[INFO][158.255.150.252:46048]: GET http://95.217.8.18:8000/complex/get  200 1203
+INFO:sanic.access:
+[2021-06-28 16:54:01 +0200] - (sanic.access)[INFO][176.116.137.101:33906]: GET http://95.217.8.18:8000/login?username=admin&password=pass  200 35
+INFO:sanic.access:
+[2021-06-28 16:54:02 +0200] - (sanic.access)[INFO][176.116.137.101:33906]: GET http://95.217.8.18:8000/complex/get  200 1203
+INFO:sanic.access:
