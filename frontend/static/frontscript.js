@@ -21,7 +21,7 @@ function checkStatus() {
           event_title: 'КЗ',
           event_description: '.'
       }
-      let url = 'https://cors-anywhere.herokuapp.com/' + 'http://95.217.164.134/worker/register-event'
+      let url = 'http://95.217.8.18:8000/worker/register-event'
       fetch(url, {
           method: 'POST',
           body: JSON.stringify(data),

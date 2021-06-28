@@ -192,7 +192,8 @@ async def initialize_routes(app):
             comp.events.append(event)
             await comp.commit()
             return sanic.response.json({"ok": True})
-        except:
+        except Exception as e:
+            logger.error(e)
             return sanic.response.json({"ok": False})
 
     @app.post("/worker/add-marker")
