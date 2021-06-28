@@ -13,6 +13,7 @@ from umongo.frameworks.motor_asyncio import WrappedCursor
 from api.ml import DetectPhase
 from database.entities import User, Complex, Event, Marker, GeographicLocation
 
+from loguru import logger
 
 async def check_request_for_authorization_status(request):
     cookie = request.cookies.get("logged")
@@ -123,8 +124,10 @@ async def initialize_routes(app):
                     obj = False
             response = sanic.response.json({"ok": True, "data": complexes}, dumps=dumps)
             return response
-        except:
-            return sanic.response.json({"ok": False, "data": dumps([])})
+        except Exception as e:
+            # TODO удалить e
+            logger.error("Эксепш случился: {}".format(e))
+            return sanic.response.json({"ok": False, "data": dumps([]), "err": str(e)})
 
     @app.websocket("/complex/fetch")
     async def feed(request, ws):

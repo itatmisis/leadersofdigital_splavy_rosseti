@@ -4,11 +4,11 @@
 
 
 
- //alert(proxyurl)
+//alert(proxyurl)
  fetch(proxyurl).then((response) => {
      return response.json();
  }).then((data) => {
-//     alert(JSON.stringify(data.data[0].geographic_location.longitude));
+     //     alert(JSON.stringify(data.data[0].geographic_location.longitude));
 
 
 
@@ -28,11 +28,11 @@
              infowindow.open(map, marker);
          });
      }
-//     alert(JSON.stringify(data.data[0].events[0].probability))
-//     alert(JSON.stringify(parseFloat(data.data[0].events[0].markers[0].geographic_location.latitude)))
-//     alert(JSON.stringify(data.data[0].events[0].markers[0].geographic_location.longitude))
+     //alert(JSON.stringify(data.data[0].events[0].probability))
+     //alert(JSON.stringify(parseFloat(data.data[0].events[0].markers[0].geographic_location.latitude)))
+     //alert(JSON.stringify(data.data[0].events[0].markers[0].geographic_location.longitude))
 
-//     alert(data.data.length);
+     //alert(data.data.length);
      for (let i = 0; i < data.data.length; i++) {
          const location = { lat:   parseFloat(JSON.stringify(data.data[i].geographic_location.latitude)), lng: parseFloat(JSON.stringify(data.data[i].geographic_location.longitude))};
          let contentString = "";

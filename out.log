@@ -380,3 +380,251 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.7/dist-packages/sanic_plugin_toolkit/realm.py", line 18, in <module>
     from sanic.models.futures import FutureException as SanicFutureException
 ModuleNotFoundError: No module named 'sanic.models'
+[2021-06-28 14:20:58 +0200] [21265] [INFO] Goin' Fast @ http://95.217.8.18:8000
+INFO:sanic.root:Goin' Fast @ http://95.217.8.18:8000
+[2021-06-28 14:20:58 +0200] [21265] [INFO] Starting worker [21265]
+INFO:sanic.root:Starting worker [21265]
+[2021-06-28 14:28:36 +0200] - (sanic.access)[INFO][158.255.150.252:42608]: GET http://95.217.8.18:8000/login?username=user&password=123456  200 45
+INFO:sanic.access:
+[2021-06-28 14:39:57 +0200] - (sanic.access)[INFO][158.255.150.252:44324]: GET http://95.217.8.18:8000/login?username=user&password=pass  200 31
+INFO:sanic.access:
+[2021-06-28 14:46:24 +0200] - (sanic.access)[INFO][146.75.181.55:11966]: GET http://95.217.8.18:8000/login?username=admin&password=pass  200 35
+INFO:sanic.access:
+[2021-06-28 14:46:28 +0200] - (sanic.access)[INFO][146.75.181.55:11971]: GET http://95.217.8.18:8000/complex/get  200 24
+INFO:sanic.access:
+[2021-06-28 14:46:50 +0200] - (sanic.access)[INFO][146.75.181.63:12224]: GET http://95.217.8.18:8000/login?username=admin&password=pass  200 35
+INFO:sanic.access:
+[2021-06-28 14:46:53 +0200] - (sanic.access)[INFO][146.75.181.63:12233]: GET http://95.217.8.18:8000/complex/get  200 24
+INFO:sanic.access:
+[2021-06-28 14:50:48 +0200] - (sanic.access)[INFO][158.255.150.252:44468]: GET http://95.217.8.18:8000/login?username=admin&password=pass  200 35
+INFO:sanic.access:
+[2021-06-28 14:50:55 +0200] - (sanic.access)[INFO][158.255.150.252:44468]: GET http://95.217.8.18:8000/complex/get  200 24
+INFO:sanic.access:
+[2021-06-28 15:18:34 +0200] [21265] [INFO] Stopping worker [21265]
+INFO:sanic.root:Stopping worker [21265]
+[2021-06-28 15:18:34 +0200] [21265] [INFO] Server Stopped
+INFO:sanic.root:Server Stopped
+Traceback (most recent call last):
+  File "main.py", line 4, in <module>
+    from api import routes
+  File "/root/leadersofdigital_splavy_rosseti/api/routes.py", line 14, in <module>
+    from database.entities import User, Complex, Event, Marker, GeographicLocation
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/__init__.py", line 1, in <module>
+    from .complex import *
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/complex.py", line 3, in <module>
+    from database.entities.event import Event
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/event.py", line 3, in <module>
+    from database.entities.misc import Marker
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/misc.py", line 3, in <module>
+    from server import app
+  File "/root/leadersofdigital_splavy_rosseti/server.py", line 2, in <module>
+    from sanic_cors import CORS
+  File "/usr/local/lib/python3.7/dist-packages/sanic_cors/__init__.py", line 11, in <module>
+    from .decorator import cross_origin
+  File "/usr/local/lib/python3.7/dist-packages/sanic_cors/decorator.py", line 13, in <module>
+    from sanic_plugin_toolkit import SanicPluginRealm
+  File "/usr/local/lib/python3.7/dist-packages/sanic_plugin_toolkit/__init__.py", line 4, in <module>
+    from .realm import SanicPluginRealm
+  File "/usr/local/lib/python3.7/dist-packages/sanic_plugin_toolkit/realm.py", line 18, in <module>
+    from sanic.models.futures import FutureException as SanicFutureException
+ModuleNotFoundError: No module named 'sanic.models'
+Traceback (most recent call last):
+  File "main.py", line 4, in <module>
+    from api import routes
+  File "/root/leadersofdigital_splavy_rosseti/api/routes.py", line 14, in <module>
+    from database.entities import User, Complex, Event, Marker, GeographicLocation
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/__init__.py", line 1, in <module>
+    from .complex import *
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/complex.py", line 3, in <module>
+    from database.entities.event import Event
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/event.py", line 3, in <module>
+    from database.entities.misc import Marker
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/misc.py", line 3, in <module>
+    from server import app
+  File "/root/leadersofdigital_splavy_rosseti/server.py", line 2, in <module>
+    from sanic_cors import CORS
+  File "/usr/local/lib/python3.7/dist-packages/sanic_cors/__init__.py", line 11, in <module>
+    from .decorator import cross_origin
+  File "/usr/local/lib/python3.7/dist-packages/sanic_cors/decorator.py", line 13, in <module>
+    from sanic_plugin_toolkit import SanicPluginRealm
+  File "/usr/local/lib/python3.7/dist-packages/sanic_plugin_toolkit/__init__.py", line 4, in <module>
+    from .realm import SanicPluginRealm
+  File "/usr/local/lib/python3.7/dist-packages/sanic_plugin_toolkit/realm.py", line 18, in <module>
+    from sanic.models.futures import FutureException as SanicFutureException
+ModuleNotFoundError: No module named 'sanic.models'
+Traceback (most recent call last):
+  File "main.py", line 4, in <module>
+    from api import routes
+  File "/root/leadersofdigital_splavy_rosseti/api/routes.py", line 14, in <module>
+    from database.entities import User, Complex, Event, Marker, GeographicLocation
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/__init__.py", line 1, in <module>
+    from .complex import *
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/complex.py", line 3, in <module>
+    from database.entities.event import Event
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/event.py", line 3, in <module>
+    from database.entities.misc import Marker
+  File "/root/leadersofdigital_splavy_rosseti/database/entities/misc.py", line 3, in <module>
+    from server import app
+  File "/root/leadersofdigital_splavy_rosseti/server.py", line 2, in <module>
+    from sanic_cors import CORS
+  File "/usr/local/lib/python3.7/dist-packages/sanic_cors/__init__.py", line 11, in <module>
+    from .decorator import cross_origin
+  File "/usr/local/lib/python3.7/dist-packages/sanic_cors/decorator.py", line 13, in <module>
+    from sanic_plugin_toolkit import SanicPluginRealm
+  File "/usr/local/lib/python3.7/dist-packages/sanic_plugin_toolkit/__init__.py", line 4, in <module>
+    from .realm import SanicPluginRealm
+  File "/usr/local/lib/python3.7/dist-packages/sanic_plugin_toolkit/realm.py", line 18, in <module>
+    from sanic.models.futures import FutureException as SanicFutureException
+ModuleNotFoundError: No module named 'sanic.models'
+[2021-06-28 15:22:13 +0200] [27888] [INFO] Goin' Fast @ http://95.217.8.18:8000
+INFO:sanic.root:Goin' Fast @ http://95.217.8.18:8000
+[2021-06-28 15:22:13 +0200] [27888] [INFO] Starting worker [27888]
+INFO:sanic.root:Starting worker [27888]
+[2021-06-28 15:22:18 +0200] - (sanic.access)[INFO][158.255.150.252:43194]: GET http://95.217.8.18:8000/complex/get  200 24
+INFO:sanic.access:
+[2021-06-28 15:23:02 +0200] - (sanic.access)[INFO][158.255.150.252:43204]: GET http://95.217.8.18:8000/login?username=user&password=pass  200 31
+INFO:sanic.access:
+[2021-06-28 15:34:16 +0200] - (sanic.access)[INFO][146.75.181.63:8076]: GET http://95.217.8.18:8000/login?username=user&password=pass  200 31
+INFO:sanic.access:
+[2021-06-28 15:34:52 +0200] - (sanic.access)[INFO][146.75.181.63:8137]: GET http://95.217.8.18:8000/login?username=admin&password=pass  200 35
+INFO:sanic.access:
+[2021-06-28 15:34:55 +0200] - (sanic.access)[INFO][146.75.181.63:8151]: GET http://95.217.8.18:8000/complex/get  200 24
+INFO:sanic.access:
+[2021-06-28 16:01:31 +0200] - (sanic.access)[INFO][158.255.150.252:44212]: GET http://95.217.8.18:8000/?username=user&password=user  200 55
+INFO:sanic.access:
+[2021-06-28 16:02:12 +0200] - (sanic.access)[INFO][146.75.181.55:20680]: GET http://95.217.8.18:8000/login?username=admin&password=pass  200 35
+INFO:sanic.access:
+[2021-06-28 16:02:16 +0200] - (sanic.access)[INFO][146.75.181.55:20687]: GET http://95.217.8.18:8000/complex/get  200 24
+INFO:sanic.access:
+[2021-06-28 16:02:37 +0200] - (sanic.access)[INFO][146.75.181.55:20724]: GET http://95.217.8.18:8000/complex/get  200 24
+INFO:sanic.access:
+[2021-06-28 16:02:38 +0200] [27888] [ERROR] Exception occurred while handling uri: 'http://95.217.8.18:8000/favicon.ico'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/sanic_routing/router.py", line 84, in resolve
+    extra,
+  File "", line 14, in find_route
+sanic_routing.exceptions.NotFound: Not Found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/sanic/router.py", line 36, in _get
+    extra={"host": host} if host else None,
+  File "/usr/local/lib/python3.7/dist-packages/sanic_routing/router.py", line 96, in resolve
+    raise self.exception(str(e), path=path)
+sanic_routing.exceptions.NotFound: Not Found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/sanic/app.py", line 726, in handle_request
+    request.headers.getone("host", None),
+  File "/usr/local/lib/python3.7/dist-packages/sanic/router.py", line 61, in get
+    return self._get(path, method, host)
+  File "/usr/local/lib/python3.7/dist-packages/sanic/router.py", line 39, in _get
+    raise NotFound("Requested URL {} not found".format(e.path))
+sanic.exceptions.NotFound: Requested URL /favicon.ico not found
+ERROR:sanic.error:Exception occurred while handling uri: 'http://95.217.8.18:8000/favicon.ico'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/sanic_routing/router.py", line 84, in resolve
+    extra,
+  File "", line 14, in find_route
+sanic_routing.exceptions.NotFound: Not Found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/sanic/router.py", line 36, in _get
+    extra={"host": host} if host else None,
+  File "/usr/local/lib/python3.7/dist-packages/sanic_routing/router.py", line 96, in resolve
+    raise self.exception(str(e), path=path)
+sanic_routing.exceptions.NotFound: Not Found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/sanic/app.py", line 726, in handle_request
+    request.headers.getone("host", None),
+  File "/usr/local/lib/python3.7/dist-packages/sanic/router.py", line 61, in get
+    return self._get(path, method, host)
+  File "/usr/local/lib/python3.7/dist-packages/sanic/router.py", line 39, in _get
+    raise NotFound("Requested URL {} not found".format(e.path))
+sanic.exceptions.NotFound: Requested URL /favicon.ico not found
+[2021-06-28 16:02:38 +0200] - (sanic.access)[INFO][146.75.181.55:20727]: GET http://95.217.8.18:8000/favicon.ico  404 673
+INFO:sanic.access:
+[2021-06-28 16:02:39 +0200] [27888] [ERROR] Exception occurred while handling uri: 'http:///*'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/sanic/http.py", line 126, in http1
+    await self.http1_request_header()
+  File "/usr/local/lib/python3.7/dist-packages/sanic/http.py", line 188, in http1_request_header
+    await self._receive_more()
+  File "/usr/local/lib/python3.7/dist-packages/sanic/server.py", line 222, in receive_more
+    await self._data_received.wait()
+  File "/usr/lib/python3.7/asyncio/locks.py", line 293, in wait
+    await fut
+concurrent.futures._base.CancelledError
+ERROR:sanic.error:Exception occurred while handling uri: 'http:///*'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/dist-packages/sanic/http.py", line 126, in http1
+    await self.http1_request_header()
+  File "/usr/local/lib/python3.7/dist-packages/sanic/http.py", line 188, in http1_request_header
+    await self._receive_more()
+  File "/usr/local/lib/python3.7/dist-packages/sanic/server.py", line 222, in receive_more
+    await self._data_received.wait()
+  File "/usr/lib/python3.7/asyncio/locks.py", line 293, in wait
+    await fut
+concurrent.futures._base.CancelledError
+[2021-06-28 16:02:39 +0200] - (sanic.access)[INFO][UNKNOWN]: NONE http:///*  503 666
+INFO:sanic.access:
+[2021-06-28 16:09:42 +0200] [27888] [INFO] Stopping worker [27888]
+INFO:sanic.root:Stopping worker [27888]
+[2021-06-28 16:09:43 +0200] [27888] [INFO] Server Stopped
+INFO:sanic.root:Server Stopped
+Traceback (most recent call last):
+  File "main.py", line 4, in <module>
+    from api import routes
+  File "/root/leadersofdigital_splavy_rosseti/api/routes.py", line 126
+    except as e:
+            ^
+SyntaxError: invalid syntax
+Traceback (most recent call last):
+  File "main.py", line 4, in <module>
+    from api import routes
+  File "/root/leadersofdigital_splavy_rosseti/api/routes.py", line 126
+    except as e:
+            ^
+SyntaxError: invalid syntax
+Traceback (most recent call last):
+  File "main.py", line 4, in <module>
+    from api import routes
+  File "/root/leadersofdigital_splavy_rosseti/api/routes.py", line 126
+    except as e:
+            ^
+SyntaxError: invalid syntax
+Traceback (most recent call last):
+  File "main.py", line 4, in <module>
+    from api import routes
+  File "/root/leadersofdigital_splavy_rosseti/api/routes.py", line 126
+    except as e:
+            ^
+SyntaxError: invalid syntax
+[2021-06-28 16:37:11 +0200] [5698] [INFO] Goin' Fast @ http://95.217.8.18:8000
+INFO:sanic.root:Goin' Fast @ http://95.217.8.18:8000
+[2021-06-28 16:37:11 +0200] [5698] [INFO] Starting worker [5698]
+INFO:sanic.root:Starting worker [5698]
+[2021-06-28 16:39:15 +0200] - (sanic.access)[INFO][116.203.245.151:46206]: GET http://95.217.8.18:8000/complex/get  200 1203
+INFO:sanic.access:
+[2021-06-28 16:39:32 +0200] - (sanic.access)[INFO][116.203.245.151:46272]: GET http://95.217.8.18:8000/login?username=admin&password=pass  200 35
+INFO:sanic.access:
+[2021-06-28 16:39:36 +0200] - (sanic.access)[INFO][116.203.245.151:46272]: GET http://95.217.8.18:8000/complex/get  200 1203
+INFO:sanic.access:
+[2021-06-28 16:39:46 +0200] - (sanic.access)[INFO][116.203.245.151:46352]: GET http://95.217.8.18:8000/complex/get  200 1203
+INFO:sanic.access:
+[2021-06-28 16:39:56 +0200] - (sanic.access)[INFO][116.203.245.151:46418]: GET http://95.217.8.18:8000/complex/get  200 1203
+INFO:sanic.access:
+[2021-06-28 16:40:06 +0200] - (sanic.access)[INFO][116.203.245.151:46438]: GET http://95.217.8.18:8000/complex/get  200 1203
+INFO:sanic.access:
+[2021-06-28 16:40:18 +0200] - (sanic.access)[INFO][116.203.245.151:46456]: GET http://95.217.8.18:8000/login?username=admin&password=pass  200 35
+INFO:sanic.access:
+[2021-06-28 16:40:20 +0200] - (sanic.access)[INFO][116.203.245.151:46456]: GET http://95.217.8.18:8000/complex/get  200 1203
+INFO:sanic.access:
