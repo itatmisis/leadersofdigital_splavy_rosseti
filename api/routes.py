@@ -165,47 +165,43 @@ async def initialize_routes(app):
         else:
             return sanic.response.json({"ok": False, "description": "You are not a worker!"})
 
-    @app.post("/supervisor/register-event")
-    @authorized
-    @authorized_type
+    @app.post("/worker/register-event")
     async def handle(request):
-        if request.args.get("usertype") == "supervisor":
-            try:
-                req = request.json
-                comp: Complex = await Complex.find_one({"title": req["complex_title"]})
-                file = req["event_file"]
-                event_type, event_start, event_end = DetectPhase.detect(file)
-                event_start = datetime.datetime(microsecond=event_start)
-                event_end = datetime.datetime(microsecond=event_end)
-                event = Event(title=req["event_title"],
-                              description=req["event_description"],
-                              event_type=event_type,
-                              event_start=event_start,
-                              event_end=event_end,
-                              probability=0.87)
-                comp.events.append(event)
-                await comp.commit()
-                return sanic.response.json({"ok": True})
-            except:
-                return sanic.response.json({"ok": False})
-        else:
-            return sanic.response.json({"ok": False, "description": "You are not a supervisor!"})
+        try:
+            req = request.json
+            comp: Complex = await Complex.find_one({"title": req["complex_title"]})
+            file = req["event_file"]
+            results = DetectPhase.detect(file)
+            event_type, event_start, event_end, probability = results[0]
+            event_type = {"1_faza": "Однофазное КЗ", "2_faza": "Двухфазное КЗ", "3_faza": "Трёхфазное КЗ"}[event_type]
+            event_start = int(event_start*1000000)
+            event_end = int(event_end*1000000)
+            event_start = datetime.datetime(2020, 10, 25, 9, 10, 15, event_start)
+            event_end = datetime.datetime(2020, 10, 25, 9, 10, 15, event_end)
+            event_length = event_end - event_start
+            event = Event(title=req["event_title"],
+                          description=req["event_description"],
+                          event_type=event_type,
+                          event_start=event_start.__str__(),
+                          event_end=event_end.__str__(),
+                          event_length=event_length.microseconds,
+                          probability=probability)
+            comp.events.append(event)
+            await comp.commit()
+            return sanic.response.json({"ok": True})
+        except:
+            return sanic.response.json({"ok": False})
 
-    @app.post("/supervisor/add-marker")
-    @authorized
-    @authorized_type
+    @app.post("/worker/add-marker")
     async def handle(request):
-        if request.args.get("usertype") == "supervisor":
-            try:
-                req = request.json
-                event: Event = await Event.find_one({"title": req["event_title"]})
-                marker = Marker(title=req["marker_title"],
-                                geographic_location=GeographicLocation(latitude=req["marker_latitude"],
-                                                                       longitude=req["marker_longitude"]))
-                event.markers.append(marker)
-                await event.commit()
-                return sanic.response.json({"ok": True})
-            except:
-                return sanic.response.json({"ok": False})
-        else:
-            return sanic.response.json({"ok": False, "description": "You are not a supervisor!"})
+        try:
+            req = request.json
+            event: Event = await Event.find_one({"title": req["event_title"]})
+            marker = Marker(title=req["marker_title"],
+                            geographic_location=GeographicLocation(latitude=req["marker_latitude"],
+                                                                   longitude=req["marker_longitude"]))
+            event.markers.append(marker)
+            await event.commit()
+            return sanic.response.json({"ok": True})
+        except:
+            return sanic.response.json({"ok": False})

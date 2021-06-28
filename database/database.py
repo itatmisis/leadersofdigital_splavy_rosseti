@@ -22,13 +22,18 @@ async def initialize_database(app):
     await entities.Complex.ensure_indexes()
     logging.debug("Complex document was initialized...")
 
+    es = datetime.datetime(2020, 5, 17, 20, 15, 10, 128)
+    ee = datetime.datetime(2020, 5, 17, 20, 15, 10, 584)
+    el: datetime.timedelta = ee - es
+
     complex_1 = entities.Complex(title="Подстанция АРЗ-13", location="Деревня Постное",
                                  geographic_location=entities.GeographicLocation(latitude=43.725034,
                                                                                  longitude=45.634656),
-                                 events=[entities.Event(title="Однофазное КЗ", event_type="однофазное КЗ",
-                                                        event_start=datetime.datetime(2020, 5, 17),
-                                                        event_end=datetime.datetime(2020, 5, 18),
-                                                        probability=0.95,
+                                 events=[entities.Event(title="Однофазное КЗ", event_type="Однофазное КЗ",
+                                                        event_start=es.__str__(),
+                                                        event_end=ee.__str__(),
+                                                        event_length=el.microseconds,
+                                                        probability=1,
                                                         markers=[entities.Marker(title="Срыв дерева от ветра",
                                                                                  geographic_location=entities.GeographicLocation(
                                                                                      latitude=43.780533,

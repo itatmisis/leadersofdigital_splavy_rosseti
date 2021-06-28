@@ -15,7 +15,8 @@ class DetectPhase:
         A = 0.5
         short_type = '1_faza'
         for index, row in faza_1.iterrows():
-            if abs(row['Ub']) < 20 and abs(row['Ib']) > 1 or abs(row['Ua']) < 20 and abs(row['Ia']) > 1 or abs(row['Uc']) < 20 and abs(row['Ic']) > 1:
+            if abs(row['Ub']) < 20 and abs(row['Ib']) > 1 or abs(row['Ua']) < 20 and abs(row['Ia']) > 1 or abs(
+                    row['Uc']) < 20 and abs(row['Ic']) > 1:
                 if st_bool:
                     start = row['t']
                     st_bool = False
@@ -64,10 +65,10 @@ class DetectPhase:
         rec.load(path_to_cff)
         keys = ['t'] + rec.analog_channel_ids
         values = [rec.time] + rec.analog
-        d = dict(zip(keys,values))
-        data = pd.DataFrame(data = d)
+        d = dict(zip(keys, values))
+        data = pd.DataFrame(data=d)
         col_pref = ['Ua', 'Ub', 'Uc', '3U0', 'Ia', 'Ib', 'Ic', '3I0']
-        col_name  = ['t']
+        col_name = ['t']
         col_name += k_stat * col_pref
         data.columns = col_name
         data = data.dropna()
