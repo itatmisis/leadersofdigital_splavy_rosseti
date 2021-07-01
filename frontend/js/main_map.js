@@ -3,9 +3,13 @@
  let map, infoWindow;
 
 
-
-//alert(proxyurl)
- fetch(proxyurl).then((response) => {
+ function initMap() {
+     map = new google.maps.Map(document.getElementById("map"), {
+         center: { lat: -34.397, lng: 150.644 },
+         zoom: 6,
+     });
+     infoWindow = new google.maps.InfoWindow();
+     fetch(proxyurl).then((response) => {
      return response.json();
  }).then((data) => {
      //     alert(JSON.stringify(data.data[0].geographic_location.longitude));
@@ -70,12 +74,5 @@
  }
 
  });
-
- function initMap() {
-     map = new google.maps.Map(document.getElementById("map"), {
-         center: { lat: -34.397, lng: 150.644 },
-         zoom: 6,
-     });
-     infoWindow = new google.maps.InfoWindow();
  }
 
