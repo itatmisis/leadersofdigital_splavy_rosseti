@@ -193,6 +193,10 @@ async def initialize_routes(app):
             await comp.commit()
             return sanic.response.json({"ok": True})
         except Exception as e:
+            import sys
+            import traceback
+            exc_info = sys.exc_info()
+            traceback.print_exception(*exc_info)
             logger.error(e)
             return sanic.response.json({"ok": False})
 

@@ -1,4 +1,7 @@
+import pandas as pd
 from comtrade import Comtrade
+
+from loguru import logger
 class DetectPhase:
 
     @staticmethod
@@ -63,6 +66,8 @@ class DetectPhase:
     def detect(path_to_cff, k_stat=1):
         rec = Comtrade()
         rec.load(path_to_cff)
+        logger.info(path_to_cff)
+        logger.info(rec.status)
         keys = ['t'] + rec.analog_channel_ids
         values = [rec.time] + rec.analog
         d = dict(zip(keys, values))
@@ -83,6 +88,7 @@ class DetectPhase:
                 res.append(1)
             if res[1] == 0  and res[2] == 0:
                 res = DetectPhase.time_3_faza(phase)
+                logger.info(rec.digital)
                 if rec.digital[3] != 0:
                   res.append(0)
                 else:
