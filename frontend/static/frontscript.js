@@ -84,7 +84,7 @@ function unhighlight(e) {
 
 function uploadFile(file) {
   $(".req").fadeOut(300)
-  let url = '/upload'
+  let url = ':8000/upload'
   let formData = new FormData()
   formData.append('file', file)
 
