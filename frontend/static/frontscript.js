@@ -95,8 +95,8 @@ function uploadFile(file) {
   .then((response) => {
       return response
   }).then((data) => {
-
-    setTimeout(function(){location.href="/foo"} , 1500);
+    return null
+    // setTimeout(function(){location.href="/foo"} , 1500);
   })
   .catch(() => {})
 }
