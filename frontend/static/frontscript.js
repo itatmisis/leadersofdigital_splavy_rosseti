@@ -17,7 +17,7 @@ function checkStatus() {
       let formData = new FormData();
       let data = {
           complex_title: 'Подстанция ПОС-49',
-          event_file:  './data/2_faza_VL.cff',
+          event_file:  './data/3_faza_new.cff',
           event_title: 'КЗ',
           event_description: '.'
       }

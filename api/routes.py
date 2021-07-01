@@ -174,13 +174,15 @@ async def initialize_routes(app):
             req = request.json
             comp: Complex = await Complex.find_one({"title": req["complex_title"]})
             file = req["event_file"]
-            results = DetectPhase.detect(file)
+            # TODO по утверждению ВЛАДА, для каждого файла второй аргумент функции ниже уникальный, если так, сделать реализовать это
+            results = DetectPhase.detect(file, 2)
             event_type, event_start, event_end, probability = results[0]
             event_type = {"1_faza": "Однофазное КЗ", "2_faza": "Двухфазное КЗ", "3_faza": "Трёхфазное КЗ"}[event_type]
             event_start = int(event_start*1000000)
             event_end = int(event_end*1000000)
             event_start = datetime.datetime(2020, 10, 25, 9, 10, 15, event_start)
-            event_end = datetime.datetime(2020, 10, 25, 9, 10, 15, event_end)
+            # TODO проверить как правильно сохранять event_end
+            event_end = datetime.datetime(2020, 10, 25, 9, 10, 15) + datetime.timedelta(microseconds=event_end)
             event_length = event_end - event_start
             event = Event(title=req["event_title"],
                           description=req["event_description"],

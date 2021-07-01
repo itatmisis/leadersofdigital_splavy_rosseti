@@ -43,8 +43,9 @@ input[type=text]:focus {
 #myInput {
 
     background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-    background-position: 10px 12px; /* Position the search icon */
+    background-position: 95%; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
+    background-size: 20px;
     font-size: 14px; /* Increase font-size */
     padding: 12px 20px 12px 25px; /* Add some padding */
     border: 1px solid #ddd; /* Add a grey border */
