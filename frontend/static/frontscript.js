@@ -21,7 +21,7 @@ function checkStatus() {
           event_title: 'КЗ',
           event_description: '.'
       }
-      let url = 'http://95.217.8.18:8000/worker/register-event'
+      let url = 'https://wirer.xyz:8000/worker/register-event'
       fetch(url, {
           method: 'POST',
           body: JSON.stringify(data),

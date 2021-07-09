@@ -14,4 +14,4 @@ async def setup():
 if __name__ == '__main__':
     loop = get_event_loop()
     loop.run_until_complete(setup())
-    app.run(host='95.217.8.18', port=8000)
+    app.run(host='wirer.xyz', port=8000, ssl=dict(cert="/etc/letsencrypt/live/wirer.xyz/fullchain.pem", key="/etc/letsencrypt/live/wirer.xyz/privkey.pem"))

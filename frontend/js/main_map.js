@@ -1,4 +1,4 @@
- const proxyurl = 'http://95.217.8.18:8000/complex/get';
+ const proxyurl = 'https://wirer.xyz:8000/complex/get';
  google.maps.event.addDomListener(window, 'load', initMap);
  let map, infoWindow;
 
