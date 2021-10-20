@@ -1,0 +1,32 @@
+.tower {
+  height: 70px;
+  width: 70px;
+  margin-top: -60px;
+  margin-left: -35px;
+  background-image: url("../images/tower_t_marker.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40px;
+}
+
+.substation {
+  height: 70px;
+  width: 70px;
+  margin-top: -60px;
+  margin-left: -35px;
+  background-image: url("../images/substation_t_marker.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40px;
+}
+
+.brigade {
+  height: 70px;
+  width: 70px;
+  background-image: url("../images/rosseti_base_transparent.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40px;
+}
+
+/*# sourceMappingURL=Map.css.map */

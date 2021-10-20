@@ -1,0 +1,81 @@
+.panels {
+  height: 100%;
+  display: grid;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  padding: 10px;
+  grid-template-rows: 1fr 5fr;
+}
+
+.logs {
+  display: grid;
+  grid-template-rows: 1fr 6.5fr;
+  z-index: 10;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.logs_header {
+  display: grid;
+  grid-template-rows: 1.5fr 1fr;
+}
+
+.menu {
+  display: grid;
+  grid-template-rows: 1fr 4fr 1fr;
+  z-index: 10;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  padding: 10px;
+  font-family: "Bahnschrift", sans-serif;
+  display: block;
+  align-self: center;
+  margin-left: 13px;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+
+#myInput {
+  background-image: url("../images/searchicon.png");
+  background-position: 95%;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  font-size: 14px;
+  padding: 12px 20px 12px 25px;
+  border: 1px solid #ddd;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  font-family: "Bahnschrift", sans-serif;
+  box-sizing: content-box;
+  border: 1px solid #ddd;
+  margin-top: -1px;
+  background-color: white;
+  padding: 12px 12px 12px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block;
+}
+
+#myUL li a:hover:not(.header) {
+  transition: 0.6s;
+  background-color: #f6f6f6;
+}
+
+/*# sourceMappingURL=Logs.css.map */
